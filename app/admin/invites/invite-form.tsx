@@ -1,7 +1,6 @@
 "use client";
 
 import { useServerAction } from "zsa-react";
-import { invite } from "./actions";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -9,22 +8,33 @@ import { useEffect } from "react";
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { createInvite } from "./actions";
+import { toast } from "sonner";
 
-export function InviteForm() {
-  const { executeFormAction, isPending, error } = useServerAction(invite);
+interface Props {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-  useEffect(() => {
-    console.log(error);
-  }, [error]);
+export function InviteForm({ setOpen }: Props) {
+  const { execute, error, isPending } = useServerAction(createInvite);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const [_, err] = await execute(formData);
+    if (err) {
+      toast(err.data);
+    }
+    toast("Successfuly created invite");
+    setOpen(false);
+  };
 
   return (
-    <form className="grid gap-4" action={executeFormAction}>
+    <form className="grid gap-4" onSubmit={handleSubmit}>
       <div className="grid gap-2">
         <Label htmlFor="email">Email</Label>
         <Input

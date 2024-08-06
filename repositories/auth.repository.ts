@@ -76,6 +76,19 @@ export class AuthRepository {
     const invites = await db.select().from(invitesTable);
     return invites.map((invite) => InviteDTOSchema.parse(invite));
   }
+
+  public async updateInvite(
+    id: string,
+    data: Partial<InsertInvite>
+  ): Promise<InviteDTO> {
+    const updatedInvite = await db
+      .update(invitesTable)
+      .set(data)
+      .where(eq(invitesTable.id, id))
+      .returning()
+      .then((res) => res[0]);
+    return InviteDTOSchema.parse(updatedInvite);
+  }
 }
 
 export const authRepository = new AuthRepository();

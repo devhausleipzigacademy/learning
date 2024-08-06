@@ -23,6 +23,14 @@ export const assertAuthenticated = async () => {
   return user;
 };
 
+export const assertAdmin = async () => {
+  const user = await assertAuthenticated();
+  if (user.role !== "admin") {
+    redirect("/");
+  }
+  return user;
+};
+
 export async function setSession(userId: string) {
   const session = await lucia.createSession(userId, {});
   const sessionCookie = lucia.createSessionCookie(session.id);

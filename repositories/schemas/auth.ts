@@ -19,7 +19,6 @@ export type InsertSession = typeof sessionsTable.$inferInsert;
 export const inviteStatus = pgEnum("invite_status", [
   "requested",
   "pending",
-  "approved",
   "rejected",
 ]);
 

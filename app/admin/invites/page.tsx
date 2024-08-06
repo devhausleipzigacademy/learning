@@ -1,18 +1,9 @@
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
-import { authRepository } from "@/repositories/auth.repository";
-import { type Invite } from "@/repositories/schemas/auth";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -24,41 +15,32 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
+import { authRepository } from "@/repositories/auth.repository";
+import { type Invite } from "@/repositories/schemas/auth";
 import { format } from "date-fns";
-import { Button } from "@/components/ui/button";
 import {
   CircleCheckIcon,
   CircleHelpIcon,
-  MoreVerticalIcon,
-  PencilIcon,
   SendHorizonalIcon,
-  SendIcon,
-  Trash2Icon,
-  UserIcon,
 } from "lucide-react";
+import { InviteDialog } from "./invite-dialog";
+import { InviteActions } from "./invite-actions";
 
 const inviteStatusMap: Record<
   Invite["status"],
   { color: string; icon: JSX.Element }
 > = {
-  pending: { color: "bg-yellow-500", icon: <SendHorizonalIcon /> },
-  requested: { color: "bg-orange-500", icon: <CircleHelpIcon /> },
-  approved: { color: "bg-green-500", icon: <CircleCheckIcon /> },
+  pending: { color: "bg-green-500", icon: <SendHorizonalIcon /> },
+  requested: { color: "bg-yellow-500", icon: <CircleHelpIcon /> },
   rejected: { color: "bg-red-500", icon: <CircleCheckIcon /> },
 };
-
-const actions = [
-  { label: "Edit", icon: PencilIcon },
-  { label: "Resend", icon: SendIcon },
-  null,
-  { label: "Delete", icon: Trash2Icon },
-];
 
 export default async function Page() {
   const invites = await authRepository.getAllInvites();
   return (
     <Card>
-      <CardHeader className="px-7">
+      <CardHeader>
         <CardTitle>Invites</CardTitle>
         <CardDescription>
           Manage all sent and requested invites.
@@ -98,34 +80,17 @@ export default async function Page() {
                   {format(invite.createdAt, "dd-MM-yyyy")}
                 </TableCell>
                 <TableCell className="hidden sm:table-cell">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button size="icon" variant="outline" className="h-8 w-8">
-                        <MoreVerticalIcon className="h-3.5 w-3.5" />
-                        <span className="sr-only">More</span>
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      {actions.map((action, idx) =>
-                        action ? (
-                          <DropdownMenuItem
-                            key={idx}
-                            className="flex items-center gap-2"
-                          >
-                            <action.icon className="size-4" /> {action.label}
-                          </DropdownMenuItem>
-                        ) : (
-                          <DropdownMenuSeparator key={idx} />
-                        )
-                      )}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                  <InviteActions invite={invite} />
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </CardContent>
+      <CardFooter className="justify-end">
+        {/* TODO: don't like the button there, find a better solution */}
+        <InviteDialog />
+      </CardFooter>
     </Card>
   );
 }

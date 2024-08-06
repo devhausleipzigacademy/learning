@@ -9,7 +9,6 @@ export const InviteDTOSchema = z.object({
   role: z.enum(role.enumValues),
   status: z.enum(inviteStatus.enumValues),
   createdAt: z.date(),
-  updatedAt: z.date(),
 });
 
 export type InviteDTO = z.infer<typeof InviteDTOSchema>;

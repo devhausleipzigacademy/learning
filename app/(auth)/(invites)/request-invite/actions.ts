@@ -2,7 +2,7 @@
 
 import { authRepository } from "@/repositories/auth.repository";
 import { userRepository } from "@/repositories/user.repository";
-import { InviteInputSchema } from "@/schemas/invite";
+import { InviteInputSchema } from "@/validation/invite";
 import {
   InviteAlreadyExistsError,
   UserAlreadyRegisteredError,

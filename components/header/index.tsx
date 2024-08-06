@@ -16,6 +16,8 @@ import {
   Loader2Icon,
   File,
   Ticket,
+  TicketPlusIcon,
+  NewspaperIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { Suspense, cache } from "react";
@@ -28,6 +30,7 @@ const profilerLoader = cache(userRepository.getUserById);
 
 export async function Header() {
   const user = await getCurrentUser();
+  const isSignedIn = !!user;
 
   return (
     <div className="border-b py-4">
@@ -39,17 +42,26 @@ export async function Header() {
           </Link>
 
           <div className="flex items-center gap-2">
-            {user && (
+            {!isSignedIn ? (
               <Button
                 variant={"link"}
                 asChild
                 className="flex items-center justify-center gap-2"
               >
-                <Link href={"/dashboard"}>
-                  <LayoutDashboard className="w-4 h-4" /> Dashboard
+                <Link href={"/request-invite"}>
+                  <TicketPlusIcon className="w-4 h-4" /> Request invite
                 </Link>
               </Button>
-            )}
+            ) : null}
+            <Button
+              variant={"link"}
+              asChild
+              className="flex items-center justify-center gap-2"
+            >
+              <Link href={"/blog"}>
+                <NewspaperIcon className="w-4 h-4" /> Blog
+              </Link>
+            </Button>
           </div>
         </div>
 

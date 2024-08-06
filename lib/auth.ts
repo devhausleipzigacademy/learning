@@ -7,6 +7,7 @@ import type { Session, User } from "lucia";
 import { GitHub } from "arctic";
 import { usersTable } from "@/repositories/schemas/user";
 import { sessionsTable } from "@/repositories/schemas/auth";
+import { type User as DbUser } from "@/repositories/schemas/user";
 
 const adapter = new DrizzlePostgreSQLAdapter(db, sessionsTable, usersTable);
 
@@ -26,16 +27,16 @@ export const lucia = new Lucia(adapter, {
       githubId: attributes.githubId,
       username: attributes.username,
       name: attributes.name,
+      role: attributes.role,
     };
   },
 });
-type a = typeof lucia;
 
 // IMPORTANT!
 declare module "lucia" {
   interface Register {
     Lucia: typeof lucia;
-    DatabaseUserAttributes: DatabaseUserAttributes;
+    DatabaseUserAttributes: DbUser;
   }
 }
 
