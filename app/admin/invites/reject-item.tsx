@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
-import { CircleOffIcon } from "lucide-react";
-import { toast } from "sonner";
-import { rejectInvite } from "./actions";
+import { DropdownMenuItem } from '@/components/ui/dropdown-menu';
+import { CircleOffIcon } from 'lucide-react';
+import { toast } from 'sonner';
+import { rejectInvite } from './actions';
 
 interface Props {
   id: string;
@@ -16,7 +16,7 @@ export function RejectItem({ id }: Props) {
       toast(err.data);
       return;
     }
-    toast("Invite rejected");
+    toast('Invite rejected');
   };
   return (
     <DropdownMenuItem

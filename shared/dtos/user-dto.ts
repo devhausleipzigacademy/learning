@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { role } from "@/repositories/schemas/user";
+import { z } from 'zod';
+import { role } from '@/repositories/schemas/user';
 
 export const UserDTOSchema = z.object({
   id: z.string(),

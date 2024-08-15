@@ -1,7 +1,7 @@
-import { db } from ".";
-import { InviteDTO, InviteDTOSchema } from "@/shared/dtos/invite-dto";
-import { InsertInvite, invitesTable } from "./schemas/auth";
-import { eq } from "drizzle-orm";
+import { db } from '.';
+import { InviteDTO, InviteDTOSchema } from '@/shared/dtos/invite-dto';
+import { InsertInvite, invitesTable } from './schemas/auth';
+import { eq } from 'drizzle-orm';
 
 export class AuthRepository {
   public async getInviteByEmail(email: string): Promise<InviteDTO | null> {
@@ -79,7 +79,7 @@ export class AuthRepository {
 
   public async updateInvite(
     id: string,
-    data: Partial<InsertInvite>
+    data: Partial<InsertInvite>,
   ): Promise<InviteDTO> {
     const updatedInvite = await db
       .update(invitesTable)

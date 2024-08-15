@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
-import { CircleCheckBigIcon } from "lucide-react";
-import { toast } from "sonner";
-import { acceptInvite } from "./actions";
+import { DropdownMenuItem } from '@/components/ui/dropdown-menu';
+import { CircleCheckBigIcon } from 'lucide-react';
+import { toast } from 'sonner';
+import { acceptInvite } from './actions';
 
 interface Props {
   id: string;
@@ -16,7 +16,7 @@ export function AcceptItem({ id }: Props) {
       toast(err.data);
       return;
     }
-    toast("Invite approved");
+    toast('Invite approved');
   };
   return (
     <DropdownMenuItem

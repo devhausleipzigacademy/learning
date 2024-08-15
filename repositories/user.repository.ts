@@ -1,7 +1,7 @@
-import { UserDTO, UserDTOSchema } from "@/shared/dtos/user-dto";
-import { db } from ".";
-import { InsertUser, usersTable } from "./schemas/user";
-import { eq } from "drizzle-orm";
+import { UserDTO, UserDTOSchema } from '@/shared/dtos/user-dto';
+import { db } from '.';
+import { InsertUser, usersTable } from './schemas/user';
+import { eq } from 'drizzle-orm';
 
 export class UserRepository {
   public async getUserById(id: string): Promise<UserDTO | null> {

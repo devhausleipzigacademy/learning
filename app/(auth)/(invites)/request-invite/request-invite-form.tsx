@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useServerAction } from "zsa-react";
-import { requestInvite } from "./actions";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { useEffect } from "react";
+import { useServerAction } from 'zsa-react';
+import { requestInvite } from './actions';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { useEffect } from 'react';
 
 export function RequestInviteForm() {
   const { executeFormAction, isPending, error } =

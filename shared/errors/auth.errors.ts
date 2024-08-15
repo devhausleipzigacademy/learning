@@ -1,6 +1,6 @@
 export class InvalidInviteError extends Error {
   constructor(options?: ErrorOptions) {
-    super("Invalid invite", (options = {}));
+    super('Invalid invite', (options = {}));
   }
 }
 
@@ -18,12 +18,12 @@ export class InviteNotApprovedError extends Error {
 
 export class UserAlreadyRegisteredError extends Error {
   constructor(options?: ErrorOptions) {
-    super("User already registered", (options = {}));
+    super('User already registered', (options = {}));
   }
 }
 
 export class InviteAlreadyExistsError extends Error {
   constructor(options?: ErrorOptions) {
-    super("Invite already exists", (options = {}));
+    super('Invite already exists', (options = {}));
   }
 }

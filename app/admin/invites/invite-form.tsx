@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { useServerAction } from "zsa-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { useEffect } from "react";
+import { useServerAction } from 'zsa-react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { useEffect } from 'react';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { createInvite } from "./actions";
-import { toast } from "sonner";
+} from '@/components/ui/select';
+import { createInvite } from './actions';
+import { toast } from 'sonner';
 
 interface Props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -29,7 +29,7 @@ export function InviteForm({ setOpen }: Props) {
     if (err) {
       toast(err.data);
     }
-    toast("Successfuly created invite");
+    toast('Successfuly created invite');
     setOpen(false);
   };
 

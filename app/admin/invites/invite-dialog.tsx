@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -8,10 +8,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { PlusCircleIcon } from "lucide-react";
-import { useState } from "react";
-import { InviteForm } from "./invite-form";
+} from '@/components/ui/dialog';
+import { PlusCircleIcon } from 'lucide-react';
+import { useState } from 'react';
+import { InviteForm } from './invite-form';
 
 export function InviteDialog() {
   const [open, setOpen] = useState(false);

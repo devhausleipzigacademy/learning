@@ -1,4 +1,4 @@
-import { Badge } from "@/components/ui/badge";
+import { Badge } from '@/components/ui/badge';
 import {
   Card,
   CardContent,
@@ -6,7 +6,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   Table,
   TableBody,
@@ -14,26 +14,26 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { cn } from "@/lib/utils";
-import { authRepository } from "@/repositories/auth.repository";
-import { type Invite } from "@/repositories/schemas/auth";
-import { format } from "date-fns";
+} from '@/components/ui/table';
+import { cn } from '@/lib/utils';
+import { authRepository } from '@/repositories/auth.repository';
+import { type Invite } from '@/repositories/schemas/auth';
+import { format } from 'date-fns';
 import {
   CircleCheckIcon,
   CircleHelpIcon,
   SendHorizonalIcon,
-} from "lucide-react";
-import { InviteDialog } from "./invite-dialog";
-import { InviteActions } from "./invite-actions";
+} from 'lucide-react';
+import { InviteDialog } from './invite-dialog';
+import { InviteActions } from './invite-actions';
 
 const inviteStatusMap: Record<
-  Invite["status"],
+  Invite['status'],
   { color: string; icon: JSX.Element }
 > = {
-  pending: { color: "bg-green-500", icon: <SendHorizonalIcon /> },
-  requested: { color: "bg-yellow-500", icon: <CircleHelpIcon /> },
-  rejected: { color: "bg-red-500", icon: <CircleCheckIcon /> },
+  pending: { color: 'bg-green-500', icon: <SendHorizonalIcon /> },
+  requested: { color: 'bg-yellow-500', icon: <CircleHelpIcon /> },
+  rejected: { color: 'bg-red-500', icon: <CircleCheckIcon /> },
 };
 
 export default async function Page() {
@@ -68,8 +68,8 @@ export default async function Page() {
                 <TableCell>
                   <Badge
                     className={cn(
-                      "text-xs bg-opacity-50",
-                      inviteStatusMap[invite.status].color
+                      'text-xs bg-opacity-50',
+                      inviteStatusMap[invite.status].color,
                     )}
                     variant="outline"
                   >
@@ -77,7 +77,7 @@ export default async function Page() {
                   </Badge>
                 </TableCell>
                 <TableCell className="hidden sm:table-cell">
-                  {format(invite.createdAt, "dd-MM-yyyy")}
+                  {format(invite.createdAt, 'dd-MM-yyyy')}
                 </TableCell>
                 <TableCell className="hidden sm:table-cell">
                   <InviteActions invite={invite} />

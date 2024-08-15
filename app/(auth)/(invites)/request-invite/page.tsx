@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { RequestInviteForm } from "./request-invite-form";
-import Image from "next/image";
+import Link from 'next/link';
+import { RequestInviteForm } from './request-invite-form';
+import Image from 'next/image';
 
 export default function Page() {
   return (

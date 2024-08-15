@@ -1,6 +1,6 @@
-import { assertAuthenticated } from "@/lib/session";
-import { authRepository } from "@/repositories/auth.repository";
-import { userRepository } from "@/repositories/user.repository";
+import { assertAuthenticated } from '@/lib/session';
+import { authRepository } from '@/repositories/auth.repository';
+import { userRepository } from '@/repositories/user.repository';
 
 export default async function Page() {
   const user = await assertAuthenticated();

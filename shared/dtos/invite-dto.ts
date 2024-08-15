@@ -1,6 +1,6 @@
-import { z } from "zod";
-import { role } from "@/repositories/schemas/user";
-import { inviteStatus } from "@/repositories/schemas/auth";
+import { z } from 'zod';
+import { role } from '@/repositories/schemas/user';
+import { inviteStatus } from '@/repositories/schemas/auth';
 
 export const InviteDTOSchema = z.object({
   id: z.string(),

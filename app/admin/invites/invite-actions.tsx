@@ -1,17 +1,17 @@
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { MoreVerticalIcon, SendHorizonalIcon } from "lucide-react";
-import { DeleteItem } from "./delete-item";
-import { ResendItem } from "./resend-item";
-import { InviteDTO } from "@/shared/dtos/invite-dto";
-import { AcceptItem } from "./accept-item";
-import { RejectItem } from "./reject-item";
-import { AlertDialog } from "@/components/ui/alert-dialog";
+} from '@/components/ui/dropdown-menu';
+import { MoreVerticalIcon, SendHorizonalIcon } from 'lucide-react';
+import { DeleteItem } from './delete-item';
+import { ResendItem } from './resend-item';
+import { InviteDTO } from '@/shared/dtos/invite-dto';
+import { AcceptItem } from './accept-item';
+import { RejectItem } from './reject-item';
+import { AlertDialog } from '@/components/ui/alert-dialog';
 
 interface Props {
   invite: InviteDTO;
@@ -27,14 +27,14 @@ export function InviteActions({ invite }: Props) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {invite.status === "requested" ? (
+        {invite.status === 'requested' ? (
           <>
             <AcceptItem id={invite.id} />
             <RejectItem id={invite.id} />
             <DropdownMenuSeparator />
           </>
         ) : null}
-        {invite.status === "pending" ? (
+        {invite.status === 'pending' ? (
           <>
             <ResendItem id={invite.id} />
             <DropdownMenuSeparator />

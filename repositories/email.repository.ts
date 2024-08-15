@@ -1,4 +1,4 @@
-import { Resend } from "resend";
+import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -13,7 +13,7 @@ export class EmailRepository {
     template: JSX.Element;
   }) {
     await resend.emails.send({
-      from: "info@dnmct.dev",
+      from: 'info@dnmct.dev',
       subject,
       to,
       react: template,

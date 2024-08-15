@@ -1,19 +1,19 @@
-import { github, lucia } from "@/lib/auth";
-import { cookies } from "next/headers";
-import { OAuth2RequestError } from "arctic";
-import { generateIdFromEntropySize } from "lucia";
+import { github, lucia } from '@/lib/auth';
+import { cookies } from 'next/headers';
+import { OAuth2RequestError } from 'arctic';
+import { generateIdFromEntropySize } from 'lucia';
 import {
   InviteNotApprovedError,
   NoInviteError,
-} from "@/shared/errors/auth.errors";
-import { authRepository } from "@/repositories/auth.repository";
-import { userRepository } from "@/repositories/user.repository";
+} from '@/shared/errors/auth.errors';
+import { authRepository } from '@/repositories/auth.repository';
+import { userRepository } from '@/repositories/user.repository';
 
 export async function GET(request: Request): Promise<Response> {
   const url = new URL(request.url);
-  const code = url.searchParams.get("code");
-  const state = url.searchParams.get("state");
-  const storedState = cookies().get("github_oauth_state")?.value ?? null;
+  const code = url.searchParams.get('code');
+  const state = url.searchParams.get('state');
+  const storedState = cookies().get('github_oauth_state')?.value ?? null;
   if (!code || !state || !storedState || state !== storedState) {
     return new Response(null, {
       status: 400,
@@ -22,7 +22,7 @@ export async function GET(request: Request): Promise<Response> {
 
   try {
     const tokens = await github.validateAuthorizationCode(code);
-    const githubUserResponse = await fetch("https://api.github.com/user", {
+    const githubUserResponse = await fetch('https://api.github.com/user', {
       headers: {
         Authorization: `Bearer ${tokens.accessToken}`,
       },
@@ -37,25 +37,25 @@ export async function GET(request: Request): Promise<Response> {
       cookies().set(
         sessionCookie.name,
         sessionCookie.value,
-        sessionCookie.attributes
+        sessionCookie.attributes,
       );
       return new Response(null, {
         status: 302,
         headers: {
-          Location: "/",
+          Location: '/',
         },
       });
     }
 
     const existingInvite = await authRepository.getInviteByEmail(
-      githubUser.email
+      githubUser.email,
     );
 
     if (!existingInvite) {
       throw new NoInviteError();
     }
 
-    if (existingInvite.status === "requested") {
+    if (existingInvite.status === 'requested') {
       throw new InviteNotApprovedError();
     }
 
@@ -79,12 +79,12 @@ export async function GET(request: Request): Promise<Response> {
     cookies().set(
       sessionCookie.name,
       sessionCookie.value,
-      sessionCookie.attributes
+      sessionCookie.attributes,
     );
     return new Response(null, {
       status: 302,
       headers: {
-        Location: "/dashboard",
+        Location: '/dashboard',
       },
     });
   } catch (e) {
@@ -92,7 +92,7 @@ export async function GET(request: Request): Promise<Response> {
       return new Response(null, {
         status: 302,
         headers: {
-          Location: "/request-invite",
+          Location: '/request-invite',
         },
       });
     }
@@ -101,7 +101,7 @@ export async function GET(request: Request): Promise<Response> {
       return new Response(null, {
         status: 302,
         headers: {
-          Location: "/invite-pending",
+          Location: '/invite-pending',
         },
       });
     }

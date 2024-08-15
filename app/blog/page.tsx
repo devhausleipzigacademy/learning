@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { getAllPosts } from "./fetchers";
+import Link from 'next/link';
+import { getAllPosts } from './fetchers';
 
 export default async function Page() {
   const posts = await getAllPosts();

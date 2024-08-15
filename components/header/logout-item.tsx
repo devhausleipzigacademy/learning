@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { logout } from "@/actions/auth";
-import { DropdownMenuItem } from "../ui/dropdown-menu";
-import { LogOut } from "lucide-react";
+import { logout } from '@/actions/auth';
+import { DropdownMenuItem } from '../ui/dropdown-menu';
+import { LogOut } from 'lucide-react';
 
 export function LogoutItem() {
   return (

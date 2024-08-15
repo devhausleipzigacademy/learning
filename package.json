@@ -8,9 +8,11 @@
     "start": "next start",
     "lint": "next lint",
     "add:component": "bunx shadcn-ui@latest add",
-    "db:seed": "bun ./seed.ts"
+    "db:seed": "bun ./seed.ts",
+    "format": "prettier --write ."
   },
   "dependencies": {
+    "@effect/schema": "^0.70.4",
     "@lucia-auth/adapter-drizzle": "^1.0.7",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
@@ -29,6 +31,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
     "drizzle-orm": "^0.32.1",
+    "effect": "^3.6.3",
     "input-otp": "^1.2.4",
     "install": "^0.13.0",
     "lucia": "^3.2.0",
@@ -37,6 +40,7 @@
     "next": "latest",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.3.0",
+    "prettier": "^3.3.3",
     "react": "latest",
     "react-dom": "latest",
     "resend": "^3.2.0",

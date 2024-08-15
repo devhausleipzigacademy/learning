@@ -1,9 +1,9 @@
-import "server-only";
-import { cookies } from "next/headers";
-import { lucia } from "@/lib/auth";
-import { validateRequest } from "@/lib/auth";
-import { cache } from "react";
-import { redirect } from "next/navigation";
+import 'server-only';
+import { cookies } from 'next/headers';
+import { lucia } from '@/lib/auth';
+import { validateRequest } from '@/lib/auth';
+import { cache } from 'react';
+import { redirect } from 'next/navigation';
 
 export const getCurrentUser = cache(async () => {
   const session = await validateRequest();
@@ -18,15 +18,15 @@ export const getCurrentUser = cache(async () => {
 export const assertAuthenticated = async () => {
   const user = await getCurrentUser();
   if (!user) {
-    redirect("/login");
+    redirect('/login');
   }
   return user;
 };
 
 export const assertAdmin = async () => {
   const user = await assertAuthenticated();
-  if (user.role !== "admin") {
-    redirect("/");
+  if (user.role !== 'admin') {
+    redirect('/');
   }
   return user;
 };
@@ -37,6 +37,6 @@ export async function setSession(userId: string) {
   cookies().set(
     sessionCookie.name,
     sessionCookie.value,
-    sessionCookie.attributes
+    sessionCookie.attributes,
   );
 }

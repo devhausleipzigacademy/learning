@@ -1,13 +1,13 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { Button } from "@/components/ui/button";
-import { getCurrentUser } from "@/lib/session";
-import { redirect } from "next/navigation";
+import { Button } from '@/components/ui/button';
+import { getCurrentUser } from '@/lib/session';
+import { redirect } from 'next/navigation';
 
 export default async function Page() {
   const user = await getCurrentUser();
-  if (user) redirect("/");
+  if (user) redirect('/');
 
   return (
     <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
@@ -23,7 +23,7 @@ export default async function Page() {
             <Link href="/api/auth/login">Login with GitHub</Link>
           </Button>
           <div className="mt-4 text-center text-sm">
-            Don&apos;t have an account?{" "}
+            Don&apos;t have an account?{' '}
             <Link href="/request-invite" className="underline">
               Request invite
             </Link>

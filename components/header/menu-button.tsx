@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { BookIcon, MenuIcon, SearchIcon, UsersIcon } from "lucide-react";
-import Link from "next/link";
+} from '@/components/ui/dropdown-menu';
+import { BookIcon, MenuIcon, SearchIcon, UsersIcon } from 'lucide-react';
+import Link from 'next/link';
 
 export function MenuButton() {
   return (

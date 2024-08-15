@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
-import { Trash2Icon } from "lucide-react";
-import { deleteInvite } from "./actions";
-import { toast } from "sonner";
+import { DropdownMenuItem } from '@/components/ui/dropdown-menu';
+import { Trash2Icon } from 'lucide-react';
+import { deleteInvite } from './actions';
+import { toast } from 'sonner';
 
 interface Props {
   id: string;
@@ -16,7 +16,7 @@ export function DeleteItem({ id }: Props) {
       toast(err.data);
       return;
     }
-    toast("Invite successfully deleted");
+    toast('Invite successfully deleted');
   };
   return (
     <DropdownMenuItem

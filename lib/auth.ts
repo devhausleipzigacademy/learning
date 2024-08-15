@@ -1,13 +1,13 @@
-import { Lucia } from "lucia";
-import { DrizzlePostgreSQLAdapter } from "@lucia-auth/adapter-drizzle";
-import { db } from "@/repositories";
-import { cache } from "react";
-import { cookies } from "next/headers";
-import type { Session, User } from "lucia";
-import { GitHub } from "arctic";
-import { usersTable } from "@/repositories/schemas/user";
-import { sessionsTable } from "@/repositories/schemas/auth";
-import { type User as DbUser } from "@/repositories/schemas/user";
+import { Lucia } from 'lucia';
+import { DrizzlePostgreSQLAdapter } from '@lucia-auth/adapter-drizzle';
+import { db } from '@/repositories';
+import { cache } from 'react';
+import { cookies } from 'next/headers';
+import type { Session, User } from 'lucia';
+import { GitHub } from 'arctic';
+import { usersTable } from '@/repositories/schemas/user';
+import { sessionsTable } from '@/repositories/schemas/auth';
+import { type User as DbUser } from '@/repositories/schemas/user';
 
 const adapter = new DrizzlePostgreSQLAdapter(db, sessionsTable, usersTable);
 
@@ -18,7 +18,7 @@ export const lucia = new Lucia(adapter, {
     expires: false,
     attributes: {
       // set to `true` when using HTTPS
-      secure: process.env.NODE_ENV === "production",
+      secure: process.env.NODE_ENV === 'production',
     },
   },
   getUserAttributes: (attributes) => {
@@ -33,7 +33,7 @@ export const lucia = new Lucia(adapter, {
 });
 
 // IMPORTANT!
-declare module "lucia" {
+declare module 'lucia' {
   interface Register {
     Lucia: typeof lucia;
     DatabaseUserAttributes: DbUser;
@@ -67,7 +67,7 @@ export const validateRequest = cache(
         cookies().set(
           sessionCookie.name,
           sessionCookie.value,
-          sessionCookie.attributes
+          sessionCookie.attributes,
         );
       }
       if (!result.session) {
@@ -75,12 +75,12 @@ export const validateRequest = cache(
         cookies().set(
           sessionCookie.name,
           sessionCookie.value,
-          sessionCookie.attributes
+          sessionCookie.attributes,
         );
       }
     } catch {}
     return result;
-  }
+  },
 );
 
 export async function createSession(userId: string) {
@@ -89,11 +89,11 @@ export async function createSession(userId: string) {
   cookies().set(
     sessionCookie.name,
     sessionCookie.value,
-    sessionCookie.attributes
+    sessionCookie.attributes,
   );
 }
 
 export const github = new GitHub(
   process.env.GITHUB_CLIENT_ID!,
-  process.env.GITHUB_CLIENT_SECRET!
+  process.env.GITHUB_CLIENT_SECRET!,
 );

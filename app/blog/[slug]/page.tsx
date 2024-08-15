@@ -1,4 +1,4 @@
-import { getAllPostSlugs, getPostBySlug } from "../fetchers";
+import { getAllPostSlugs, getPostBySlug } from '../fetchers';
 
 export async function generateStaticParams() {
   const slugs = await getAllPostSlugs();

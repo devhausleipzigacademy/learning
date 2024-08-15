@@ -1,5 +1,5 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,8 +7,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { getCurrentUser } from "@/lib/session";
+} from '@/components/ui/dropdown-menu';
+import { getCurrentUser } from '@/lib/session';
 import {
   Calendar,
   LayoutDashboard,
@@ -18,13 +18,13 @@ import {
   Ticket,
   TicketPlusIcon,
   NewspaperIcon,
-} from "lucide-react";
-import Link from "next/link";
-import { Suspense, cache } from "react";
-import { LogoutItem } from "./logout-item";
-import { MenuButton } from "./menu-button";
-import { ModeToggle } from "./mode-toggle";
-import { userRepository } from "@/repositories/user.repository";
+} from 'lucide-react';
+import Link from 'next/link';
+import { Suspense, cache } from 'react';
+import { LogoutItem } from './logout-item';
+import { MenuButton } from './menu-button';
+import { ModeToggle } from './mode-toggle';
+import { userRepository } from '@/repositories/user.repository';
 
 const profilerLoader = cache(userRepository.getUserById);
 
@@ -44,21 +44,21 @@ export async function Header() {
           <div className="flex items-center gap-2">
             {!isSignedIn ? (
               <Button
-                variant={"link"}
+                variant={'link'}
                 asChild
                 className="flex items-center justify-center gap-2"
               >
-                <Link href={"/request-invite"}>
+                <Link href={'/request-invite'}>
                   <TicketPlusIcon className="w-4 h-4" /> Request invite
                 </Link>
               </Button>
             ) : null}
             <Button
-              variant={"link"}
+              variant={'link'}
               asChild
               className="flex items-center justify-center gap-2"
             >
-              <Link href={"/blog"}>
+              <Link href={'/blog'}>
                 <NewspaperIcon className="w-4 h-4" /> Blog
               </Link>
             </Button>
@@ -89,9 +89,9 @@ async function ProfileAvatar({ userId }: { userId: string }) {
       <AvatarImage src={profile?.avatarUrl} />
       <AvatarFallback>
         {profile?.name
-          .split(" ")
+          .split(' ')
           .map((n) => n[0])
-          .join("")}
+          .join('')}
       </AvatarFallback>
     </Avatar>
   );
@@ -143,7 +143,7 @@ async function ProfileDropdown({ userId }: { userId: string }) {
 
       <DropdownMenuContent className="space-y-2 w-52" align="end">
         <DropdownMenuLabel>{profile?.username}</DropdownMenuLabel>
-        {profile?.role === "admin" ? (
+        {profile?.role === 'admin' ? (
           <>
             <DropdownMenuItem asChild>
               <Link

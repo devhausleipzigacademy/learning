@@ -1,11 +1,11 @@
-import { redirect } from "next/navigation";
-import { lucia, validateRequest } from "@/lib/auth";
-import { cookies } from "next/headers";
+import { redirect } from 'next/navigation';
+import { lucia, validateRequest } from '@/lib/auth';
+import { cookies } from 'next/headers';
 
 export default async function Page() {
   const { user } = await validateRequest();
   if (!user) {
-    return redirect("/login");
+    return redirect('/login');
   }
 
   return (
@@ -23,11 +23,11 @@ interface ActionResult {
 }
 
 async function logout(): Promise<ActionResult> {
-  "use server";
+  'use server';
   const { session } = await validateRequest();
   if (!session) {
     return {
-      error: "Unauthorized",
+      error: 'Unauthorized',
     };
   }
 
@@ -37,7 +37,7 @@ async function logout(): Promise<ActionResult> {
   cookies().set(
     sessionCookie.name,
     sessionCookie.value,
-    sessionCookie.attributes
+    sessionCookie.attributes,
   );
-  return redirect("/login");
+  return redirect('/login');
 }

@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 const WeeklyCalendar: React.FC = () => {
-  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
   const timeSlots = generateTimeSlots();
 
   return (
@@ -33,8 +33,8 @@ function generateTimeSlots(): string[] {
 
   while (start < end) {
     const timeString = start.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
+      hour: '2-digit',
+      minute: '2-digit',
     });
     slots.push(timeString);
 
